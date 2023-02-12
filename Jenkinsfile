@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    environments {
+    environment {
         REGISTRY_URL = '700935310038.dkr.ecr.eu-north-1.amazonaws.com'
         IMAGE_NAME = 'aleksei1988-yolo5'
     }
@@ -14,7 +14,6 @@ pipeline {
                 docker build -t $IMAGE_NAME:$BUILD_NUMBER .
                 docker tag $IMAGE_NAME:$BUILD_NUMBER $REGISTRY_URL/$IMAGE_NAME:$BUILD_NUMBER
                 docker push $REGISTRY_URL/$IMAGE_NAME:$BUILD_NUMBER
-
                 '''
             }
         }
