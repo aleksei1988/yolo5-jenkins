@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         REGISTRY_URL = '700935310038.dkr.ecr.eu-north-1.amazonaws.com'
-        IMAGE_NAME = 'aleksei988-yolo5'
+        IMAGE_NAME = 'aleksei1988-yolo5'
     }
 
     stages {
