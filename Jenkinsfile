@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         REGISTRY_URL = '700935310038.dkr.ecr.eu-north-1.amazonaws.com'
-        IMAGE_NAME = 'aleksei1988-yolo5'
+        IMAGE_NAME = 'aleksei988-yolo5'
     }
 
     stages {
@@ -19,6 +19,16 @@ pipeline {
             post {
                always {
                    sh 'docker image prune -a --filter "until=240h" --force'
+               }
+            }
+        }
+
+        stage('Trigger Deploy') {
+            steps {
+                build job: 'AppDeploy', wait: false, parameters: [
+                    string(name: 'YOLO5_IMAGE_URL', value: "$REGISTRY_URL/$IMAGE_NAME:$BUILD_NUMBER")
+                ]
+            }
         }
     }
 }
