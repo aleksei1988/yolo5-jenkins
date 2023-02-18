@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    options {
-        timeout(time: 1, unit: 'HOURS')
-        timestamp()
-    }
-
     environment {
         REGISTRY_URL = '700935310038.dkr.ecr.eu-north-1.amazonaws.com'
         IMAGE_NAME = 'aleksei1988-yolo5'
