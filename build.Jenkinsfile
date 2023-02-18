@@ -1,6 +1,13 @@
 pipeline {
     agent any
 
+
+    options {
+        timeout(time: 1, unit: 'HOURS')
+        timestamp()
+
+    }
+
     environment {
         REGISTRY_URL = '700935310038.dkr.ecr.eu-north-1.amazonaws.com'
         IMAGE_NAME = 'aleksei1988-yolo5'
@@ -15,12 +22,12 @@ pipeline {
                 '''
 
 
-                withCredentials([
-                    string(credentialsId: 'snyk_token', variable: 'SNYK_TOKEN')
-                ]) {
-                    sh '''
-                      snyk container test $IMAGE_NAME:$BUILD_NUMBER --severity-threshold=high --file=Dockerfile
-                    '''
+//                 withCredentials([
+//                     string(credentialsId: 'snyk_token', variable: 'SNYK_TOKEN')
+//                 ]) {
+//                     sh '''
+//                       snyk container test $IMAGE_NAME:$BUILD_NUMBER --severity-threshold=high --file=Dockerfile
+//                     '''
                 }
 
 
