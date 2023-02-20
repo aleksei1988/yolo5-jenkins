@@ -5,7 +5,7 @@ pipeline {
         stage('Unittest') {
             steps {
                 sh '''
-                pip install -r requiemrents.txt
+                pip3 install -r requiemrents.txt
                 python3 -m pytest --junitxml results.xml tests
                 '''
             }
