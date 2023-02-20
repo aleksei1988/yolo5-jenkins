@@ -4,7 +4,10 @@ pipeline {
     stages {
         stage('Unittest') {
             steps {
-                echo "testing"
+                sh '''
+                pip install -r requiemrents.txt
+                python3 -m pytest --junitxml results.xml tests
+                '''
             }
         }
         stage('Lint') {
